@@ -6,7 +6,7 @@ void addedge(vector<int>g[],int u,int v)
 {
   g[u].push_back(v);
 }
-bool bfs(vector<int>g[],int s)
+bool dfs(vector<int>g[],int s)
 {
   if(!v[s])
   {
@@ -34,5 +34,5 @@ int main()
     cin>>a>>b;
     addedge(g,a,b);
   }
-  cout<<bfs(g,0);
+  cout<<dfs(g,0);
 }
