@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<string>color;
+vector<int>ino;
+void addedge(vector<int>g[],int u,int v)
+{
+  g[u].push_back(v);
+}
+bool bfs(vector<int>g[],int n)
+{
+  queue<int>q;
+  for(int i=0;i<ino.size();i++)
+  {
+    if(ino[i]==0)
+    q.push(ino[i]);
+  }
+  int cnt=0;
+  while(!q.empty())
+  {
+    int u=q.front();
+    q.pop();
+    for(auto i=g[u].begin();i!=g[u].end();i++)
+    {
+      if(--ino[*i]==0)
+      q.push(*i);
+    }
+    cnt++;
+  }
+  if(cnt!=n)
+  return true;
+  return false;
+}
+int main()
+{
+  int n,a,b,e;
+  cin>>n>>e;
+  vector<int>g[n];
+  ino.assign(n,0);
+  for(int i=0;i<e;i++)
+  {
+    cin>>a>>b;
+    addedge(g,a,b);
+    ino[b]++;
+  }
+  cout<<bfs(g,n);
+}
