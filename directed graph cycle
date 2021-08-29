@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<string>color;
+vector<int>v,r;
+void addedge(vector<int>g[],int u,int v)
+{
+  g[u].push_back(v);
+}
+bool bfs(vector<int>g[],int s)
+{
+  if(!v[s])
+  {
+    v[s]=true;
+    r[s]=true;
+    for(auto i=g[s].begin();i!=g[s].end();i++)
+    {
+      if(!v[*i]&&bfs(g,*i))
+      return true;
+      else if(r[*i])
+      return true;
+    }
+  }r[s]=false;
+  return false;
+}
+int main()
+{
+  int n,a,b,e;
+  cin>>n>>e;
+  vector<int>g[n];
+  v.assign(n,false);
+  r.assign(n,false);
+  for(int i=0;i<e;i++)
+  {
+    cin>>a>>b;
+    addedge(g,a,b);
+  }
+  cout<<bfs(g,0);
+}
