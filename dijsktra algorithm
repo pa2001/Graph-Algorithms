@@ -55,3 +55,4 @@ int main()
   cin>>v;
   dij(n,v,cost,dist);
 }
+time complexity:O(Elog(v))
