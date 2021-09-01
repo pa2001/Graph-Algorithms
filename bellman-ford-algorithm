@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+void dij(int n,int v,int cost[10][10],int dist[])
+{
+  int u,count,w,min;
+  bool flag[10];
+  for(int i=0;i<=n;i++)
+  {
+    dist[i]=INT_MAX;
+  }
+  for(int i=0;i<n;i++)
+  {
+    flag[i]=0;
+    dist[i]=cost[v][i];
+  }
+  dist[v]=0;
+  flag[v]=1;
+  for(int i=0;i<n;i++)
+  {
+    if(i!=v&&cost[v][i]!=INT_MAX)
+    {
+      min=dist[i];
+      cout<<min<<endl;
+      for(w=0;w<n;w++)
+      {
+        if(cost[i][w]!=INT_MAX&&dist[w]>min+cost[i][w])
+        dist[w]=min+cost[i][w];
+      }
+    }
+  }
+  for(int i=0;i<n;i++)
+  {
+    cout<<v<<"->"<<i<<":"<<dist[i]<<endl;
+  }
+}
+int main()
+{
+  int n,v,i,j,cost[10][10],dist[10];
+  cout<<"Enter number of nodes:";
+  cin>>n;
+  cout<<"\n Enter the cost matrix:\n";
+  for(int i=0;i<n;i++)
+  {
+    for(int j=0;j<n;j++)
+    {
+      cin>>cost[i][j];
+      if(cost[i][j]==0)
+      cost[i][j]=INT_MAX;
+    }
+  }
+  cout<<"\nEnter the source:";
+  cin>>v;
+  dij(n,v,cost,dist);
+}
