@@ -20,7 +20,7 @@ void dij(int n,int v,int cost[10][10],int dist[])
   {
     if(i!=v&&cost[v][i]!=INT_MAX)
     {
-      min=dist[i];
+      min=cost[v][i];
       cout<<min<<endl;
       for(w=0;w<n;w++)
       {
